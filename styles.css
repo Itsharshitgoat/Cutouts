@@ -1,0 +1,298 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: transparent; /* Required for rounded window */
+  font-family: 'JetBrains Mono', monospace;
+  color: #F5F5F5; /* Soft white text */
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.07); /* Frosted glass effect */
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px; /* Rounded corners for main window */
+  padding: 12px;
+  box-sizing: border-box;
+  background: rgba(10, 10, 42, 0.8) url('sad.jpg') no-repeat center center;
+  background-size: cover;
+  overflow: hidden; /* Ensure content respects rounded corners */
+}
+
+.header {
+  display: flex;
+  justify-content: center; /* Center the pill */
+  align-items: center;
+  padding: 20px 24px; /* Larger header */
+  -webkit-app-region: drag;
+  background: transparent; /* Transparent to show container background */
+}
+
+.header-pill {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 624px; /* Adjusted for 672px window */
+  padding: 12px 20px; /* Larger for header */
+  background: rgba(255, 255, 255, 0.1); /* Transparent blurred pill */
+  backdrop-filter: blur(12px);
+  border-radius: 24px; /* Pill-shaped */
+  -webkit-app-region: no-drag;
+}
+
+.app-name {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Tight spacing for icon, text, and button */
+  font-size: 20px; /* Larger for header */
+  font-weight: bold;
+  color: #00F5C9; /* Neon teal accent */
+}
+
+.app-name i {
+  font-size: 20px;
+  color: #00F5C9;
+  transition: text-shadow 0.2s;
+}
+
+.app-name:hover i {
+  text-shadow: 0 0 8px rgba(0, 245, 201, 0.5); /* Neon glow on hover */
+}
+
+.creator-btn {
+  background: rgba(0, 245, 201, 0.2);
+  border: none;
+  color: #00F5C9;
+  font-size: 12px; /* Larger for header */
+  padding: 7px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.creator-btn:hover {
+  background: rgba(0, 245, 201, 0.4);
+  box-shadow: 0 0 8px rgba(0, 245, 201, 0.5); /* Neon glow */
+}
+
+.search-container {
+  position: relative;
+  max-width: 260px; /* Larger for header */
+  width: 100%;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #A0A0A0;
+  font-size: 12px;
+}
+
+.search-bar {
+  width: 100%;
+  padding: 8px 12px 8px 32px; /* Larger for header */
+  border: none;
+  outline: none;
+  font-size: 13px;
+  border-radius: 16px; /* Pill-shaped search bar */
+  background: rgba(255, 255, 255, 0.06);
+  color: #F5F5F5;
+  box-sizing: border-box;
+}
+
+.search-bar::placeholder {
+  color: #A0A0A0;
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+.search-bar:focus::placeholder {
+  opacity: 0.5; /* Subtle placeholder animation */
+}
+
+.search-bar:focus {
+  border: 1px solid #00F5C9;
+  box-shadow: 0 0 8px rgba(0, 245, 201, 0.5);
+}
+
+.window-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Added spacing for buttons */
+}
+
+.window-controls button {
+  background: none;
+  border: none;
+  color: #F5F5F5;
+  font-size: 16px; /* Larger for header */
+  padding: 0 12px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.window-controls button:hover {
+  color: #00F5C9;
+  text-shadow: 0 0 8px rgba(0, 245, 201, 0.5); /* Neon glow */
+}
+
+.clipboard-list, .overlay-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px; /* Compact for larger header */
+  scroll-behavior: smooth; /* Smooth scrolling */
+  border-radius: 12px; /* Rounded to match container */
+}
+
+.clipboard-list::-webkit-scrollbar, .overlay-list::-webkit-scrollbar {
+  display: none; /* Hide scrollbar */
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px; /* Compact for smaller window */
+  margin-bottom: 6px; /* Compact for smaller window */
+  border-radius: 12px; /* Glass tile effect */
+  background: rgba(255, 255, 255, 0.06);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.list-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 245, 201, 0.3); /* Neon glow, no blur */
+}
+
+.content-preview {
+  max-width: 40%; /* Adjusted for smaller window */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13px;
+}
+
+.tags span {
+  background: rgba(0, 245, 201, 0.2);
+  padding: 4px 8px;
+  border-radius: 12px;
+  margin-right: 6px;
+  color: #00F5C9;
+  font-size: 11px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.tags span:hover {
+  background: rgba(0, 245, 201, 0.4);
+}
+
+.actions button {
+  background: none;
+  border: none;
+  color: #F5F5F5;
+  cursor: pointer;
+  margin-left: 8px;
+  font-size: 14px;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.actions button:hover {
+  color: #00F5C9;
+  transform: scale(1.2);
+}
+
+.pinned {
+  border: 1px solid #FFD700; /* Gold border for pinned items */
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 16px; /* Rounded to match container */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal:not(.hidden) {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  padding: 20px;
+  max-width: 80%; /* Adjusted for smaller window */
+  max-height: 80%;
+  overflow: auto;
+  border-radius: 16px;
+}
+
+.modal-actions button {
+  background: rgba(0, 245, 201, 0.2);
+  border: none;
+  padding: 8px 16px;
+  margin: 0 8px;
+  border-radius: 8px;
+  color: #F5F5F5;
+  cursor: pointer;
+}
+
+.modal-actions button:hover {
+  background: rgba(0, 245, 201, 0.4);
+}
+
+.overlay-container {
+  height: calc(100vh - 32px);
+  width: calc(100vw - 32px);
+  max-height: 350px;
+  max-width: 500px;
+  border-radius: 24px; /* Already rounded for overlay */
+  padding: 12px;
+  background: rgba(10, 10, 42, 0.8) url('sad.jpg') no-repeat center center;
+  background-size: cover;
+}
+
+.list-item.selected {
+  background: rgba(0, 245, 201, 0.15);
+  border: 1px solid #00F5C9;
+}
+
+.toast {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  padding: 6px 14px; /* Compact for smaller window */
+  border-radius: 16px; /* Match pill-shaped aesthetic */
+  background: rgba(0, 245, 201, 0.3);
+  color: #F5F5F5;
+  font-size: 11px; /* Compact for smaller window */
+  transition: opacity 0.3s;
+}
+
+.toast:not(.hidden) {
+  opacity: 1;
+}
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
