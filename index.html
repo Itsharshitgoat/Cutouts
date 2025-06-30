@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cutouts</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+<body>
+  <div class="container glass">
+    <!-- Header -->
+    <div class="header" id="header">
+      <div class="header-pill glass">
+        <div class="app-name">
+          <span>Cutouts</span>
+          <button class="creator-btn">Creator</button>
+        </div>
+        <div class="search-container">
+          <i class="fas fa-search search-icon"></i>
+          <input type="text" id="search" class="search-bar glass" placeholder="Search... ( Ctrl + F )">
+        </div>
+        <div class="window-controls">
+          <button id="minimize"><img src="min.png" alt="Delete" style="width:16px;height:16px;vertical-align:middle;" /></button>
+          <button id="close"><img src="clo.png" alt="Delete" style="width:16px;height:16px;vertical-align:middle;" /></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Clipboard List -->
+    <div class="clipboard-list" id="clipboard-list"></div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast glass hidden">Copied</div>
+  </div>
+
+  <!-- Modal for Full Content -->
+  <div id="modal" class="modal glass hidden">
+    <div class="modal-content glass">
+      <p id="modal-text"></p>
+      <div class="modal-actions">
+        <button id="copy-modal">Copy</button>
+        <button id="close-modal">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
