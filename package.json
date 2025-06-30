@@ -1,0 +1,13 @@
+{
+  "name": "cutouts",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "clipboard-event": "^1.2.0",
+    "electron": "^32.0.0",
+    "sqlite3": "^5.1.7"
+  }
+}
